@@ -51,3 +51,15 @@ export const getTotalCartAmount = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
 
 export const getCart = (state) => state.cart.cart;
+
+// export const getCurrentQuantityById = (id) => (state) => {
+//   // eslint-disable-next-line no-unused-expressions
+//   return state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+// };
+
+export function getCurrentQuantityById(id) {
+  return function (state) {
+    const currentItem = state.cart.cart.find((item) => item.pizzaId === id);
+    return currentItem?.quantity ?? 0;
+  };
+}
